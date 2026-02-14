@@ -100,15 +100,14 @@ line-height:1.5;
 }
 
 .hidden{
-display:none;
+opacity:0;
 font-size:22px;
+transition:2s;
 }
 
-#surpriseText.show{
-display:block;
+.hidden.show{
 opacity:1;
-transition:2s;
-  }
+}
 
 /* ENDING SCREEN */
 
@@ -325,11 +324,7 @@ function showSurprise(){
 
 let surprise = document.getElementById("surpriseText");
 
-surprise.style.display = "block";
-
-setTimeout(()=>{
 surprise.classList.add("show");
-},100);
 
 document.getElementById("bgMusic").play();
 
