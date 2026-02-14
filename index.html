@@ -103,7 +103,7 @@ line-height:1.5;
 opacity:0;
 visibility:hidden;
 font-size:22px;
-transition:opacity 2s;
+transition:2s;
 }
 
 .hidden.show{
@@ -328,7 +328,9 @@ let surprise = document.getElementById("surpriseText");
 
 surprise.classList.add("show");
 
-document.getElementById("bgMusic").play();
+var music = document.getElementById("bgMusic");
+music.volume = 0.5;
+music.play().catch(()=>{});
 
 createHearts();
 
