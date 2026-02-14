@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dipti Ji ❤️</title>
+
+<style>
+
+body{
+margin:0;
+background:linear-gradient(135deg,#ff4e50,#ff0066);
+font-family:Arial;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* LOCK SCREEN */
+
+#lockScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:100;
+}
+
+#passwordInput{
+padding:12px;
+font-size:18px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+text-align:center;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:20px;
+background:white;
+color:red;
+margin-top:10px;
+cursor:pointer;
+}
+
+#wrong{
+color:#ffb3c6;
+margin-top:10px;
+}
+
+/* SHAKE ANIMATION */
+
+.shake{
+animation:shake 0.4s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
+100%{transform:translateX(0);}
+}
+
+/* MAIN CONTENT */
+
+#mainContent{
+display:none;
+}
+
+.container{
+margin-top:10vh;
+}
+
+#typing{
+font-size:40px;
+height:50px;
+}
+
+.slideshow img{
+width:250px;
+height:300px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.message{
+font-size:20px;
+margin:20px;
+line-height:1.5;
+}
+
+.hidden{
+opacity:0;
+transition:2s;
+font-size:22px;
+}
+
+.show{
+opacity:1;
+}
+
+/* ENDING SCREEN */
+
+#ending{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:50px;
+opacity:0;
+transition:2s;
+z-index:10;
+}
+
+#ending.show{
+opacity:1;
+}
+
+/* HEART BURST */
+
+.heart{
+position:fixed;
+font-size:24px;
+animation:burst 2s linear forwards;
+}
+
+@keyframes burst{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-300px);opacity:0;}
+}
+
+/* WELCOME TEXT */
+
+#welcome{
+position:fixed;
+top:40%;
+width:100%;
+font-size:40px;
+opacity:0;
+transition:2s;
+}
+
+#welcome.show{
+opacity:1;
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+
+<div id="lockScreen">
+
+<h2>🔒 Only Dipti Ji Can Unlock ❤️</h2>
+
+<input type="password" id="passwordInput" placeholder="Enter your special password">
+
+<button onclick="checkPassword()">Unlock ❤️</button>
+
+<p id="wrong"></p>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div id="mainContent">
+
+<div id="welcome">Welcome Dipti Ji ❤️</div>
+
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8e6b6c1a9.mp3">
+</audio>
+
+<div class="container">
+
+<h1 id="typing"></h1>
+
+<div class="slideshow">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<p class="message">
+You came into my life and made everything beautiful.  
+Your smile makes my world brighter every single day.  
+You are my happiness, my peace, and my forever.  
+I feel lucky to have you in my life ❤️
+</p>
+
+<button onclick="showSurprise()">Click for Surprise 🎁</button>
+
+<p id="surpriseText" class="hidden">
+I will love you forever ❤️  
+Happy Valentine's Day Dipti Ji 💖
+</p>
+
+</div>
+
+<div id="ending">
+I LOVE YOU DIPTI JI ❤️
+</div>
+
+</div>
+
+<script>
+
+/* PASSWORD */
+const correctPassword="dipti";
+
+/* CHECK PASSWORD */
+
+function checkPassword(){
+
+let input=document.getElementById("passwordInput");
+
+if(input.value===correctPassword){
+
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+
+startSite();
+
+}else{
+
+document.getElementById("wrong").innerHTML="Wrong password 😢 Try again my love ❤️";
+
+input.classList.add("shake");
+
+setTimeout(()=>{
+input.classList.remove("shake");
+},400);
+
+}
+
+}
+
+/* START SITE */
+
+function startSite(){
+
+document.getElementById("welcome").classList.add("show");
+
+createHearts();
+
+setTimeout(()=>{
+document.getElementById("welcome").classList.remove("show");
+},3000);
+
+type();
+
+setInterval(()=>{
+index=(index+1)%images.length;
+document.getElementById("slide").src=images[index];
+},3000);
+
+}
+
+/* TYPING */
+
+const text="I Love You Dipti Ji ❤️";
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,100);
+
+}
+
+}
+
+/* SLIDESHOW */
+
+const images=["photo1.jpg","photo2.jpg"];
+let index=0;
+
+/* HEARTS */
+
+function createHearts(){
+
+for(let i=0;i<30;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.className="heart";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.top="80vh";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),2000);
+
+}
+
+}
+
+/* SURPRISE */
+
+function showSurprise(){
+
+document.getElementById("surpriseText").classList.add("show");
+
+document.getElementById("bgMusic").play();
+
+createHearts();
+
+setTimeout(()=>{
+
+document.getElementById("ending").classList.add("show");
+
+createHearts();
+
+},4000);
+
+}
+
+</script>
+
+</body>
+</html>
